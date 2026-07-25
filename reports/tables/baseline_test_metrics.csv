@@ -1,0 +1,2 @@
+Precision@K,Recall@K,MAP@K,HitRate@K,NDCG@K,MeanRank_when_hit,Latency_ms_per_query,Avg_candidates,Candidate_ratio,Avg_clusters_scanned
+0.2,1.0,0.9738636363636364,1.0,0.9807076916639625,1.0522727272727272,0.16992136370390654,1760.0,1.0,

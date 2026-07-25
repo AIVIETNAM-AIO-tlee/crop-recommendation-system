@@ -1,0 +1,22 @@
+{
+  "feature_columns": [
+    "nitrogen",
+    "phosphorus",
+    "potassium",
+    "temperature",
+    "humidity",
+    "ph",
+    "rainfall"
+  ],
+  "top_k": 5,
+  "best_baseline": {
+    "metric": "cosine",
+    "neighbors_per_crop": 10
+  },
+  "best_hybrid": {
+    "metric": "cosine",
+    "neighbors_per_crop": 3,
+    "n_clusters": 16,
+    "n_probe": 1
+  }
+}
