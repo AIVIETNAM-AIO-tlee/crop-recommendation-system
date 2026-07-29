@@ -70,16 +70,21 @@ crop-recommendation-system/
 │   │   ├── val.csv
 │   │   └── test.csv
 │   └── README.md
-├── notebooks/
-│   ├── 01_EDA.ipynb
-│   ├── 02_Model_Training.ipynb
-│   └── 03_Evaluation.ipynb
 ├── models/
 │   ├── final_imputer.pkl
 │   ├── final_scaler.pkl
 │   ├── baseline_best_model.pkl
 │   ├── hybrid_best_model.pkl
 │   └── artifact_metadata.json
+├── notebooks/
+│   ├── main/
+│   │   └── Module2_Crop_recommendation_system.ipynb
+│   ├── notebook_1/
+│   │   └── Dang_Tran_Crop_Recommendation_Final.ipynb
+│   ├── notebook_2/
+│   │   └── Distance_metrics_and_similarity_design_for_recommendation_systems.ipynb
+│   └── notebook_3/
+│       └── Module2_K_Means__KNN.ipynb
 ├── src/
 │   ├── config.py
 │   ├── main.py
@@ -108,6 +113,16 @@ crop-recommendation-system/
 ├── README.md
 └── .gitignore
 ```
+
+## Notebook Organization
+
+The `notebooks/main/` folder contains the single main notebook used as the central workflow for the project: `Module2_Crop_recommendation_system.ipynb`.
+
+The other notebook folders are separate working notebooks prepared by the three team members:
+
+- `notebooks/notebook_1/` for Dang Tran
+- `notebooks/notebook_2/` for Thanh Le
+- `notebooks/notebook_3/` for Lam Le
 
 ## How to Run
 
