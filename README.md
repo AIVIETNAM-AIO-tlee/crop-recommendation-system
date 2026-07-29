@@ -120,9 +120,9 @@ The `notebooks/main/` folder contains the single main notebook used as the centr
 
 The other notebook folders are separate working notebooks prepared by the three team members:
 
-- `notebooks/notebook_1/` for Dang Tran
-- `notebooks/notebook_2/` for Thanh Le
-- `notebooks/notebook_3/` for Lam Le
+- `notebooks/notebook_1/` 
+- `notebooks/notebook_2/` 
+- `notebooks/notebook_3/`
 
 ## How to Run
 
