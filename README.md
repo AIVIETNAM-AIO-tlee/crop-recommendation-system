@@ -109,6 +109,10 @@ crop-recommendation-system/
 │   ├── figures/
 │   ├── tables/
 │   └── report.pdf
+├── docs/
+│   ├── jira/
+│   ├── meeting_minutes/
+│   └── tasks/
 ├── requirements.txt
 ├── README.md
 └── .gitignore
