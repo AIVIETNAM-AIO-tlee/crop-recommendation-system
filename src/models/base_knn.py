@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import numpy as np
+from time import perf_counter
 from sklearn.metrics import pairwise_distances
 from sklearn.preprocessing import normalize
 from config import DISTANCE_METRICS, TOP_K
@@ -30,8 +31,11 @@ class CropKNNRecommender:
 
     def recommend(self, X, top_k=TOP_K, return_diagnostics=False):
         Xq = self._prepare_space(X)
+        distance_start = perf_counter()
         distances = pairwise_distances(Xq, self.X_train_, metric=self.metric)
+        distance_elapsed = (perf_counter() - distance_start) * 1000 / max(len(Xq), 1)
 
+        ranking_start = perf_counter()
         crop_scores = np.empty((len(Xq), len(self.labels_)), dtype=float)
         for j, label in enumerate(self.labels_):
             class_distances = distances[:, self.class_indices_[label]]
@@ -47,6 +51,7 @@ class CropKNNRecommender:
         # Convert distance to a normalized compatibility score for presentation only.
         compatibility = 1.0 / (selected_distances + 1e-9)
         compatibility = compatibility / compatibility.sum(axis=1, keepdims=True)
+        ranking_elapsed = (perf_counter() - ranking_start) * 1000 / max(len(Xq), 1)
 
         if return_diagnostics:
             diagnostics = {
@@ -55,6 +60,10 @@ class CropKNNRecommender:
                 "clusters_scanned": np.full(len(Xq), np.nan),
                 "selected_distances": selected_distances,
                 "compatibility": compatibility,
+                "timing_ms": {
+                    "distance": np.full(len(Xq), distance_elapsed),
+                    "ranking": np.full(len(Xq), ranking_elapsed),
+                },
             }
             return recommendations, diagnostics
         return recommendations

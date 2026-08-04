@@ -17,11 +17,13 @@ def evaluate_recommender(model, X_eval, y_eval, top_k: int = TOP_K):
     aggregate.update(
         {
             "Latency_ms_per_query": elapsed * 1000 / len(X_eval),
-            "Avg_candidates": np.mean(diagnostics["candidate_count"]),
-            "Candidate_ratio": np.mean(diagnostics["candidate_ratio"]),
-            "Avg_clusters_scanned": np.nanmean(diagnostics["clusters_scanned"])
+            "Avg_candidates": float(np.mean(diagnostics["candidate_count"])),
+            "Candidate_ratio": float(np.mean(diagnostics["candidate_ratio"])),
+            "Avg_clusters_scanned": float(np.nanmean(diagnostics["clusters_scanned"]))
             if not np.all(np.isnan(diagnostics["clusters_scanned"]))
             else np.nan,
         }
     )
+    for component, values in diagnostics.get("timing_ms", {}).items():
+        aggregate[f"Latency_{component}_ms"] = float(np.mean(values))
     return aggregate, per_query, recommendations, diagnostics
