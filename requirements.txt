@@ -1,7 +1,12 @@
-jupyter
-pandas
-matplotlib
-numpy
-seaborn
-scikit-learn
-streamlit
+# Generated from the reproducible project environment and pinned for CI.
+jupyter==1.1.1
+kagglehub==0.3.12
+matplotlib==3.10.8
+nbconvert==7.17.1
+nbformat==5.10.4
+numpy==2.3.5
+pandas==2.2.3
+pytest==9.0.2
+scikit-learn==1.8.0
+seaborn==0.13.2
+streamlit==1.49.1

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import numpy as np
+from time import perf_counter
 from sklearn.cluster import KMeans
 from sklearn.metrics import pairwise_distances
 from sklearn.preprocessing import normalize
@@ -53,16 +54,22 @@ class KMeansSearchKNNRecommender:
 
     def recommend(self, X, top_k=TOP_K, return_diagnostics=False):
         Xq = self._prepare_space(X)
+        centroid_start = perf_counter()
         centroid_distances = pairwise_distances(Xq, self.centroids_, metric=self.metric)
         centroid_order = np.argsort(centroid_distances, axis=1)
+        centroid_ms = (perf_counter() - centroid_start) * 1000 / max(len(Xq), 1)
 
         all_recommendations = []
         selected_distances_all = []
         compatibility_all = []
         candidate_counts = []
         clusters_scanned = []
+        selection_timings = []
+        candidate_distance_timings = []
+        ranking_timings = []
 
         for row_idx, query in enumerate(Xq):
+            selection_start = perf_counter()
             chosen_clusters = []
             chosen_indices = np.array([], dtype=int)
 
@@ -79,12 +86,16 @@ class KMeansSearchKNNRecommender:
                 if enough_probes and enough_labels:
                     break
 
+            selection_timings.append((perf_counter() - selection_start) * 1000)
             candidate_X = self.X_train_[chosen_indices]
             candidate_y = self.y_train_[chosen_indices]
+            candidate_distance_start = perf_counter()
             distances = pairwise_distances(
                 query.reshape(1, -1), candidate_X, metric=self.metric
             ).ravel()
+            candidate_distance_timings.append((perf_counter() - candidate_distance_start) * 1000)
 
+            ranking_start = perf_counter()
             label_scores = []
             for label in np.unique(candidate_y):
                 label_distances = distances[candidate_y == label]
@@ -105,6 +116,7 @@ class KMeansSearchKNNRecommender:
             compatibility_all.append(comp)
             candidate_counts.append(len(chosen_indices))
             clusters_scanned.append(len(chosen_clusters))
+            ranking_timings.append((perf_counter() - ranking_start) * 1000)
 
         recommendations = np.asarray(all_recommendations, dtype=object)
 
@@ -116,6 +128,12 @@ class KMeansSearchKNNRecommender:
                 "clusters_scanned": np.asarray(clusters_scanned),
                 "selected_distances": np.asarray(selected_distances_all),
                 "compatibility": np.asarray(compatibility_all),
+                "timing_ms": {
+                    "centroid_distance": np.full(len(Xq), centroid_ms),
+                    "cluster_selection": np.asarray(selection_timings),
+                    "candidate_distance": np.asarray(candidate_distance_timings),
+                    "ranking": np.asarray(ranking_timings),
+                },
             }
             return recommendations, diagnostics
         return recommendations

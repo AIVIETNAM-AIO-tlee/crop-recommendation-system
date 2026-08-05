@@ -148,3 +148,24 @@ streamlit run app/app.py
 - The final artifacts are saved in `models/` after training.
 - The evaluation reports are saved in `reports/tables/`.
 - The Streamlit app reads the saved artifacts and report files directly.
+
+## Reproducible experiment update
+
+The latest implementation adds:
+
+- component-level latency profiling with a configurable p95 threshold;
+- 95% bootstrap confidence intervals for MAP@5 and NDCG@5;
+- paired bootstrap comparison of Exact KNN and KNN + K-Means++;
+- weak 2--3 crop ground truth generated from train-only crop suitability profiles;
+- unit and integration tests for distances, ranking, K-Means++ search, bootstrap, and the full pipeline;
+- exact dependency versions in `requirements.txt`.
+
+Run the complete validation and test experiment with:
+
+```bash
+python -m pip install -r requirements.txt
+pytest
+PYTHONPATH=src python src/main.py
+```
+
+The generated evidence is stored in `reports/tables/`, and the methodology and interpretation are documented in `reports/EXPERIMENT_UPDATE.md`.
