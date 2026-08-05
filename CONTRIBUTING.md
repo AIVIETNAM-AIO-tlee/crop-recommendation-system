@@ -21,33 +21,6 @@ Work is planned and tracked on the team's Jira board (project **ACM2 — AIO-CON
 
 Every epic includes a `[QA]` task where Vo Ngoc Gia Bao validates the work before it is considered done — please keep this pattern for any new epic or major feature: implementation task(s) + a QA/validation task.
 
-## Project Structure
-
-```text
-crop-recommendation-system/
-├── data/                # raw and processed (train/val/test) datasets
-├── models/              # trained artifacts (imputer, scaler, baseline/hybrid models)
-├── notebooks/
-│   ├── main/             # the single source-of-truth notebook (Module2_Crop_recommendation_system.ipynb)
-│   ├── notebook_1/       # individual working notebooks (data)
-│   ├── notebook_2/       # individual working notebooks (distance metrics)
-│   └── notebook_3/       # individual working notebooks (KNN + K-Means)
-├── src/
-│   ├── config.py          # shared config (e.g. latency threshold)
-│   ├── main.py             # training / evaluation entry point
-│   ├── data/               # loading, preprocessing, splitting
-│   ├── evaluation/         # metrics, evaluate.py, tuning.py (bootstrap CI, weak multi-label ground truth)
-│   └── models/             # base_knn.py, kmeanSearch_knn.py
-├── app/                  # Streamlit demo app
-├── reports/              # figures, tables, EXPERIMENT_UPDATE.md, report.pdf
-├── docs/                 # jira exports, meeting minutes, task notes
-├── tests/                # pytest unit/integration tests
-├── requirements.txt
-└── README.md
-```
-
-When adding a new module, please follow this existing layout rather than introducing new top-level folders (e.g. new evaluation code goes in `src/evaluation/`, new model variants in `src/models/`).
-
 ## Getting Started
 
 ```bash

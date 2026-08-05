@@ -72,60 +72,25 @@ The project uses the crop recommendation dataset stored in `data/raw/Crop_recomm
 
 ```text
 crop-recommendation-system/
-├── data/
-│   ├── raw/
-│   │   └── Crop_recommendation.csv
-│   ├── processed/
-│   │   ├── train.csv
-│   │   ├── val.csv
-│   │   └── test.csv
-│   └── README.md
-├── models/
-│   ├── final_imputer.pkl
-│   ├── final_scaler.pkl
-│   ├── baseline_best_model.pkl
-│   ├── hybrid_best_model.pkl
-│   └── artifact_metadata.json
+├── data/                   # raw and processed (train/val/test) datasets
+├── models/                 # trained artifacts (imputer, scaler, baseline/hybrid models)
 ├── notebooks/
-│   ├── main/
-│   │   └── Module2_Crop_recommendation_system.ipynb
-│   ├── notebook_1/
-│   │   └── Dang_Tran_Crop_Recommendation_Final.ipynb
-│   ├── notebook_2/
-│   │   └── Distance_metrics_and_similarity_design_for_recommendation_systems.ipynb
-│   └── notebook_3/
-│       └── Module2_K_Means__KNN.ipynb
+│   ├── main/               # the single source-of-truth notebook (Module2_Crop_recommendation_system.ipynb)
+│   ├── notebook_1/         # individual working notebooks (data)
+│   ├── notebook_2/         # individual working notebooks (distance metrics)
+│   └── notebook_3/         # individual working notebooks (KNN + K-Means)
 ├── src/
-│   ├── config.py
-│   ├── main.py
-│   ├── data/
-│   │   ├── loader.py
-│   │   ├── preprocessing.py
-│   │   └── split.py
-│   ├── evaluation/
-│   │   ├── metrics.py
-│   │   ├── evaluate.py
-│   │   └── tuning.py
-│   └── models/
-│       ├── base_knn.py
-│       └── kmeanSearch_knn.py
-├── app/
-│   ├── app.py
-│   └── pages/
-│       ├── 1_Recommendation.py
-│       ├── 2_Model_Comparison.py
-│       └── 3_Dataset.py
-├── reports/
-│   ├── figures/
-│   ├── tables/
-│   └── report.pdf
-├── docs/
-│   ├── jira/
-│   ├── meeting_minutes/
-│   └── tasks/
+│   ├── config.py           # shared config (e.g. latency threshold)
+│   ├── main.py             # training / evaluation entry point
+│   ├── data/               # loading, preprocessing, splitting
+│   ├── evaluation/         # metrics, evaluate.py, tuning.py (bootstrap CI, weak multi-label ground truth)
+│   └── models/             # base_knn.py, kmeanSearch_knn.py
+├── app/                    # Streamlit demo app
+├── reports/                # figures, tables, EXPERIMENT_UPDATE.md, report.pdf
+├── docs/                   # jira exports, meeting minutes, task notes
+├── tests/                  # pytest unit/integration tests
 ├── requirements.txt
-├── README.md
-└── .gitignore
+└── README.md
 ```
 
 ## Notebook Organization
@@ -134,9 +99,11 @@ The `notebooks/main/` folder contains the single main notebook used as the centr
 
 The other notebook folders are separate working notebooks prepared by the three team members:
 
-- `notebooks/notebook_1/` 
-- `notebooks/notebook_2/` 
+- `notebooks/notebook_1/`
+- `notebooks/notebook_2/`
 - `notebooks/notebook_3/`
+
+The other notebook folders are supporting working notebooks prepared by the team members. They were used for exploration, development, and reference, while `notebooks/main/` is the single source of truth for the final workflow.
 
 ## How to Run
 
@@ -144,6 +111,7 @@ Train and save the final artifacts:
 
 ```bash
 cd src
+python -m pip install -r requirements.txt
 python main.py
 ```
 
@@ -159,23 +127,8 @@ streamlit run app/app.py
 - The evaluation reports are saved in `reports/tables/`.
 - The Streamlit app reads the saved artifacts and report files directly.
 
-## Reproducible experiment update
+## Reproducibility Note
 
-The latest implementation adds:
+The final evaluation workflow includes component-level latency profiling with a configurable p95 threshold, 95% bootstrap confidence intervals for MAP@5 and NDCG@5, paired bootstrap comparison of Exact KNN and KNN + K-Means++, weak 2--3 crop ground truth, unit and integration tests, and pinned dependency versions.
 
-- component-level latency profiling with a configurable p95 threshold;
-- 95% bootstrap confidence intervals for MAP@5 and NDCG@5;
-- paired bootstrap comparison of Exact KNN and KNN + K-Means++;
-- weak 2--3 crop ground truth generated from train-only crop suitability profiles;
-- unit and integration tests for distances, ranking, K-Means++ search, bootstrap, and the full pipeline;
-- exact dependency versions in `requirements.txt`.
-
-Run the complete validation and test experiment with:
-
-```bash
-python -m pip install -r requirements.txt
-pytest
-PYTHONPATH=src python src/main.py
-```
-
-The generated evidence is stored in `reports/tables/`, and the methodology and interpretation are documented in `reports/EXPERIMENT_UPDATE.md`.
+See [reports/EXPERIMENT_UPDATE.md](reports/EXPERIMENT_UPDATE.md) for the methodology and results.
