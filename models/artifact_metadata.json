@@ -9,14 +9,9 @@
     "rainfall"
   ],
   "top_k": 5,
-  "best_baseline": {
-    "metric": "cosine",
-    "neighbors_per_crop": 10
-  },
-  "best_hybrid": {
-    "metric": "cosine",
-    "neighbors_per_crop": 3,
-    "n_clusters": 16,
-    "n_probe": 1
-  }
+  "random_state": 42,
+  "latency_threshold_ms": 1.0,
+  "ground_truth_note": "Weak multi-label labels retain the observed crop and add up to two alternatives using train-only crop-specific 10--90% feature envelopes. They are pseudo labels, not expert-validated agronomic annotations.",
+  "best_baseline_metric": "manhattan",
+  "best_hybrid_metric": "manhattan"
 }

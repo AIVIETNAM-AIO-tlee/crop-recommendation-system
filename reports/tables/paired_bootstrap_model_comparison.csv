@@ -1,12 +1,12 @@
 ground_truth,distance_metric,metric,difference,estimate,ci_low,ci_high,confidence,n_resamples,conclusion
-single_label,euclidean,MAP@K,hybrid_minus_exact,-0.0015151515151515154,-0.004545454545454545,0.0,0.95,2000,no_clear_difference
-single_label,euclidean,NDCG@K,hybrid_minus_exact,-0.0011363636363636363,-0.003409090909090909,0.0,0.95,2000,no_clear_difference
+single_label,euclidean,MAP@K,hybrid_minus_exact,0.0011363636363636363,-0.0007575757575757577,0.004166666666666667,0.95,2000,no_clear_difference
+single_label,euclidean,NDCG@K,hybrid_minus_exact,0.0008387960146103237,-0.0005951352435066251,0.0030576164366879826,0.95,2000,no_clear_difference
 single_label,manhattan,MAP@K,hybrid_minus_exact,0.0,0.0,0.0,0.95,2000,no_clear_difference
 single_label,manhattan,NDCG@K,hybrid_minus_exact,0.0,0.0,0.0,0.95,2000,no_clear_difference
 single_label,cosine,MAP@K,hybrid_minus_exact,0.004545454545454545,-0.003409090909090909,0.0125,0.95,2000,no_clear_difference
 single_label,cosine,NDCG@K,hybrid_minus_exact,0.003355184058441295,-0.0025163880438309714,0.009226756160713561,0.95,2000,no_clear_difference
-weak_multilabel,euclidean,MAP@K,hybrid_minus_exact,0.0017045454545454536,-0.004093749999999995,0.007501893939393929,0.95,2000,no_clear_difference
-weak_multilabel,euclidean,NDCG@K,hybrid_minus_exact,0.00030232815623448616,-0.0049281885136187266,0.005716618681829145,0.95,2000,no_clear_difference
+weak_multilabel,euclidean,MAP@K,hybrid_minus_exact,-0.0022853535353535375,-0.008863636363636365,0.004154356060606058,0.95,2000,no_clear_difference
+weak_multilabel,euclidean,NDCG@K,hybrid_minus_exact,-0.000314972312692482,-0.00611619650739288,0.005530341811891509,0.95,2000,no_clear_difference
 weak_multilabel,manhattan,MAP@K,hybrid_minus_exact,-0.0037247474747474753,-0.011039457070707064,0.0034100378787878752,0.95,2000,no_clear_difference
 weak_multilabel,manhattan,NDCG@K,hybrid_minus_exact,-0.0035188304260553144,-0.010000458769600094,0.0023143430423104485,0.95,2000,no_clear_difference
 weak_multilabel,cosine,MAP@K,hybrid_minus_exact,-0.009444444444444445,-0.017362689393939392,-0.0018920454545454646,0.95,2000,baseline_better
