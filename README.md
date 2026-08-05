@@ -75,10 +75,10 @@ crop-recommendation-system/
 ├── data/                   # raw and processed (train/val/test) datasets
 ├── models/                 # trained artifacts (imputer, scaler, baseline/hybrid models)
 ├── notebooks/
-│   ├── main/               # the single source-of-truth notebook (Module2_Crop_recommendation_system.ipynb)
-│   ├── notebook_1/         # individual working notebooks (data)
-│   ├── notebook_2/         # individual working notebooks (distance metrics)
-│   └── notebook_3/         # individual working notebooks (KNN + K-Means)
+│   ├── main/               
+│   ├── notebook_1/         
+│   ├── notebook_2/         
+│   └── notebook_3/         
 ├── src/
 │   ├── config.py           # shared config (e.g. latency threshold)
 │   ├── main.py             # training / evaluation entry point
