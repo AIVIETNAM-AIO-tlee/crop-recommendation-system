@@ -49,6 +49,16 @@ It also stores evaluation outputs such as MAP@K, NDCG@K, HitRate@K, latency, and
 | Thanh Lam Le        | Tech Leader                         |
 | Pham Minh Dang Tran | AI Engineer (data)                  |
 
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the full workflow (branching, pull requests, coding guidelines, local setup). Summary of what each member contributed:
+
+- **Thanh Le Quang** (AI Engineer – pipeline, Team Leader): project kickoff and team alignment, Jira/Kanban setup, repository folder structure and pipeline scaffolding, evaluation metrics module, Streamlit demo app, demo video, final review and retro.
+- **Thanh Lam Le** (Tech Leader): GitHub repository and README setup, K-Means++ accelerated KNN (KNN+) search implementation, presentation slides and script.
+- **Pham Minh Dang Tran** (AI Engineer – data): data collection and sourcing, exploratory data analysis, preprocessing (missing values, scaling), PCA and train/val/test splitting.
+- **Van Vi Nguyen** (AI Engineer – model): KNN baseline implementation and distance metrics.
+- **Vo Ngoc Gia Bao** (QA/Reviewer): validation and review at every stage of the project — folder structure and data sourcing, data pipeline (EDA, preprocessing, PCA), model and evaluation metrics, and the final end-to-end QA report.
+
 ## Dataset
 
 The project uses the crop recommendation dataset stored in `data/raw/Crop_recommendation.csv`.
