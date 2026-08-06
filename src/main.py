@@ -146,6 +146,8 @@ def main() -> None:
 
     test_results = pd.DataFrame(test_rows)
     test_results.to_csv(reports_dir / "test_metrics_single_and_multilabel.csv", index=False)
+    test_results[test_results["model"] == "Exact KNN"].to_csv(reports_dir / "baseline_test_metrics.csv", index=False)
+    test_results[test_results["model"] == "KNN + K-Means++"].to_csv(reports_dir / "hybrid_test_metrics.csv", index=False)
     pd.DataFrame(latency_rows).to_csv(reports_dir / "latency_profile.csv", index=False)
 
     ci_rows = []
