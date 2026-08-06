@@ -1,0 +1,45 @@
+name: tests
+
+# Continuous integration for the Crop Recommendation System.
+# Runs the full pytest suite on every push and pull request so that test
+# evidence is always visible on GitHub (addresses the reviewer comment that
+# "no test file was found in the GitHub evidence").
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  pytest:
+    name: Run unit & integration tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run tests with pytest
+        run: pytest
+
+      - name: Upload test artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: |
+            reports/tables/*.csv
+          if-no-files-found: ignore
+          retention-days: 14
