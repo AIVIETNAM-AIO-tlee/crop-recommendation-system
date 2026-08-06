@@ -101,8 +101,8 @@ crop-recommendation-system/
 Train and save the final artifacts:
 
 ```bash
-cd src
 python -m pip install -r requirements.txt
+cd src
 python main.py
 ```
 
