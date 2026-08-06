@@ -68,25 +68,31 @@ The project uses the crop recommendation dataset stored in `data/raw/Crop_recomm
 - Feature columns: the 7 soil and weather variables listed above
 - Split files: `data/processed/train.csv`, `data/processed/val.csv`, `data/processed/test.csv`
 
-## Folder Structure
+## Repository Structure
 
 ```text
 crop-recommendation-system/
-├── data/                   # raw and processed (train/val/test) datasets
-├── models/                 # trained artifacts (imputer, scaler, baseline/hybrid models)
+├── app/                         # Streamlit application and pages
+├── data/
+│   ├── raw/                     # Original CSV dataset
+│   └── processed/               # Train, validation, and test CSV files
+├── docs/                        # Course documents, Jira exports, and meeting notes
+├── models/                      # Saved imputer, scaler, and trained recommenders
 ├── notebooks/
-│   └── main/                      
+│   └── main/                    # Main experiment notebook
+├── reports/
+│   ├── EXPERIMENT_UPDATE.md     # Methodology and findings
+│   └── tables/                  # Validation, test, CI, latency, and label tables
 ├── src/
-│   ├── config.py           # shared config (e.g. latency threshold)
-│   ├── main.py             # training / evaluation entry point
-│   ├── data/               # loading, preprocessing, splitting
-│   ├── evaluation/         # metrics, evaluate.py, tuning.py (bootstrap CI, weak multi-label ground truth)
-│   └── models/             # base_knn.py, kmeanSearch_knn.py
-├── app/                    # Streamlit demo app
-├── reports/                # figures, tables, EXPERIMENT_UPDATE.md, report.pdf
-├── docs/                   # jira exports, meeting minutes, task notes
-├── tests/                  # pytest unit/integration tests
-├── requirements.txt
+│   ├── config.py                # Shared experiment configuration
+│   ├── main.py                  # End-to-end experiment entry point
+│   ├── data/                    # Loading, preprocessing, and splitting
+│   ├── evaluation/              # Metrics, bootstrap, latency, tuning, ground truth
+│   └── models/                  # Exact KNN and K-Means++-indexed KNN
+├── tests/                       # Unit and integration tests
+├── requirements.txt             # Pinned dependencies
+├── pytest.ini
+├── CONTRIBUTING.md
 └── README.md
 ```
 
