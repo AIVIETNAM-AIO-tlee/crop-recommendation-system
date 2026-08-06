@@ -6,11 +6,11 @@ Thanks for your interest in this project. This document describes how the team w
 
 | Name | Role | Jira focus area |
 | --- | --- | --- |
-| Thanh Le Quang | AI Engineer (pipeline), Team Leader | Project setup, pipeline/folder structure, demo app, team coordination |
-| Thanh Lam Le | Tech Leader | GitHub repo setup, KNN + K-Means++ search, presentation |
+| Thanh Le Quang | AI Engineer (pipeline), Team Leader | Project setup, pipeline/folder structure, demo app, team coordination, write report |
+| Thanh Lam Le | Tech Leader | GitHub repo setup, KNN + K-Means++ search, write report |
 | Pham Minh Dang Tran | AI Engineer (data) | Data collection, EDA, preprocessing, PCA and data splitting |
 | Van Vi Nguyen | AI Engineer (model) | KNN baseline, distance metrics, evaluation metrics |
-| Vo Ngoc Gia Bao | QA / Reviewer | Validating each stage (folder structure, data pipeline, model/metrics, final end-to-end QA) |
+| Vo Ngoc Gia Bao | QA / Reviewer | Validating each stage (folder structure, data pipeline, model/metrics, final end-to-end QA), testing, presentation, and review report |
 
 Work is planned and tracked on the team's Jira board (project **ACM2 — AIO-CONQUER MODULE 2**). The board is organized into four epics, each owned by one engineer and independently validated by QA:
 
