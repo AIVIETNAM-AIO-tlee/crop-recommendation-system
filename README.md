@@ -75,10 +75,7 @@ crop-recommendation-system/
 ├── data/                   # raw and processed (train/val/test) datasets
 ├── models/                 # trained artifacts (imputer, scaler, baseline/hybrid models)
 ├── notebooks/
-│   ├── main/               
-│   ├── notebook_1/         
-│   ├── notebook_2/         
-│   └── notebook_3/         
+│   └── main/                      
 ├── src/
 │   ├── config.py           # shared config (e.g. latency threshold)
 │   ├── main.py             # training / evaluation entry point
@@ -92,18 +89,6 @@ crop-recommendation-system/
 ├── requirements.txt
 └── README.md
 ```
-
-## Notebook Organization
-
-The `notebooks/main/` folder contains the single main notebook used as the central workflow for the project: `Module2_Crop_recommendation_system.ipynb`.
-
-The other notebook folders are separate working notebooks prepared by the three team members:
-
-- `notebooks/notebook_1/`
-- `notebooks/notebook_2/`
-- `notebooks/notebook_3/`
-
-The other notebook folders are supporting working notebooks prepared by the team members. They were used for exploration, development, and reference, while `notebooks/main/` is the single source of truth for the final workflow.
 
 ## How to Run
 
